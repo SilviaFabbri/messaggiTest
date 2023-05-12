@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  activemq:
+    broker-url: tcp://localhost:8161
+    username: admin
+    password: admin
+    packages:
+      trust-all: true
+    artemis:
+      embedded:
+        queues: queue-data
