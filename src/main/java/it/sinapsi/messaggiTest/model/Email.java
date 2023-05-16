@@ -1,6 +1,14 @@
 package it.sinapsi.messaggiTest.model;
+import jakarta.persistence.Id;
+import org.springframework.data.redis.core.RedisHash;
 
-public class Email {
+import java.io.Serializable;
+import java.util.UUID;
+
+@RedisHash("email")
+public class Email implements Serializable {
+    @Id
+    private UUID id;
     private String to;
     private String body;
 
@@ -10,6 +18,14 @@ public class Email {
     public Email(String to, String body) {
         this.to = to;
         this.body = body;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getTo() {
