@@ -21,5 +21,5 @@ public class EmailManager {
         return  HttpStatus.CREATED;
     }
     @GetMapping()
-    public Iterable<Email> findAll(){ return emailRepository.findAll();}
+    public Iterable<Email> cercaTutto(){ return emailRepository.findAll();}
 }

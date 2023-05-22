@@ -19,14 +19,10 @@ public class EmailScheduler {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-
-    public Iterable<Email> findAll(){ return repository.findAll();}
-
+    public Iterable<Email> cercaTutto(){ return repository.findAll();}
 
     @Scheduled(fixedDelay = 60000)
     public void scheduleEmail(){
-        for(Email email: findAll()){
-            jmsTemplate.convertAndSend("email",  email);
-        }
+        for(Email email: cercaTutto()){jmsTemplate.convertAndSend("email",  email);}
     }
 }
