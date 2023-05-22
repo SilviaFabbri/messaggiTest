@@ -17,7 +17,7 @@ public class EmailDao {
         UUID uuid = UUID.randomUUID();
         Email email = new Email();
         email.setId(uuid);
-        email.setTo(emailDto.getTo());
+        email.setMittente(emailDto.getTo());
         email.setBody(emailDto.getBody());
         try{
             return  this.repository.save(email);

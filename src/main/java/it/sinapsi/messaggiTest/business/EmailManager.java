@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/email")
 public class EmailManager {
@@ -21,5 +23,12 @@ public class EmailManager {
         return  HttpStatus.CREATED;
     }
     @GetMapping()
-    public Iterable<Email> cercaTutto(){ return emailRepository.findAll();}
+    public Iterable<Email> cercaTutto(){
+        return emailRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Email> cercaEmail(String id){
+        return emailRepository.findById(id);
+    }
 }

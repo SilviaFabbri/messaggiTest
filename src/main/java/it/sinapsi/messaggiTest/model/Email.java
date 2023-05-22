@@ -9,14 +9,15 @@ import java.util.UUID;
 public class Email implements Serializable {
     @Id
     private UUID id;
-    private String to;
+    private String mittente;
     private String body;
 
     public Email() {
     }
 
-    public Email(String to, String body) {
-        this.to = to;
+    public Email(UUID id, String mittente, String body) {
+        this.id = id;
+        this.mittente = mittente;
         this.body = body;
     }
 
@@ -28,12 +29,12 @@ public class Email implements Serializable {
         this.id = id;
     }
 
-    public String getTo() {
-        return to;
+    public String getMittente() {
+        return mittente;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setMittente(String mittente) {
+        this.mittente = mittente;
     }
 
     public String getBody() {
@@ -46,6 +47,6 @@ public class Email implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Email{to=%s, body=%s}", getTo(), getBody());
+        return String.format("id=%s, mittente=%s, body=%s", getId(), getMittente(), getBody());
     }
 }
