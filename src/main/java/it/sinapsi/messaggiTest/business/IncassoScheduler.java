@@ -1,7 +1,7 @@
 package it.sinapsi.messaggiTest.business;
 
 
-import it.sinapsi.messaggiTest.model.Email;
+import it.sinapsi.messaggiTest.model.Incasso;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsTemplate;
@@ -12,19 +12,20 @@ import org.springframework.stereotype.Service;
 @Service
 @EnableJms
 @EnableScheduling
-public class EmailScheduler {
+public class IncassoScheduler {
     @Autowired
-    private EmailRepository repository;
+    private IncassoRepository repository;
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public Iterable<Email> cercaTutto(){ return repository.findAll();}
+    public Iterable<Incasso> cercaTutto(){ return repository.findAll();}
 
     @Scheduled(fixedDelay = 60000)
-    public void scheduleEmail(){
-        for(Email email: cercaTutto()){
-            jmsTemplate.convertAndSend("email",  email);
+    public void scheduleIncasso(){
+        for(Incasso incasso : cercaTutto()){
+            jmsTemplate.convertAndSend("incassi", incasso);
             repository.deleteAll();
+            System.err.println(incasso);
         }
     }
 }
