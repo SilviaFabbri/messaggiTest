@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @EnableJms
 @EnableScheduling
-public class IncassoScheduler {
+public class JmsScheduler {
     @Autowired
     private IncassoRepository repository;
     @Autowired
@@ -25,7 +25,7 @@ public class IncassoScheduler {
         for(Incasso incasso : cercaTutto()){
             jmsTemplate.convertAndSend("incassi", incasso);
             repository.deleteAll();
-            System.err.println(incasso);
+            System.out.println(incasso);
         }
     }
 }

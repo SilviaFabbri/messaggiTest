@@ -17,17 +17,7 @@ import java.util.UUID;
 public class Incasso implements Serializable {
     @Id
     private UUID id;
-    @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, timezone = JsonFormat.DEFAULT_TIMEZONE)
-    private LocalDate giorno;
-
-    private BigDecimal totale;
-    private BigDecimal gastronomia;
-    private BigDecimal fresco;
-    private BigDecimal secco;
-    private BigDecimal ortofrutta;
-    private BigDecimal surgelati;
+    private BigDecimal incasso;
     private String meteo;
 
         public UUID getId() {
@@ -38,61 +28,15 @@ public class Incasso implements Serializable {
             this.id = id;
         }
 
-        public LocalDate getGiorno() {
-            return giorno;
+
+        public BigDecimal getIncasso() {
+            return incasso;
         }
 
-        public void setGiorno(LocalDate giorno) {
-            this.giorno = giorno;
+        public void setIncasso(BigDecimal incasso) {
+            this.incasso = incasso;
         }
 
-        public BigDecimal getTotale() {
-            return totale;
-        }
-
-        public void setTotale(BigDecimal totale) {
-            this.totale = totale;
-        }
-
-        public BigDecimal getGastronomia() {
-            return gastronomia;
-        }
-
-        public void setGastronomia(BigDecimal gastronomia) {
-            this.gastronomia = gastronomia;
-        }
-
-        public BigDecimal getFresco() {
-            return fresco;
-        }
-
-        public void setFresco(BigDecimal fresco) {
-            this.fresco = fresco;
-        }
-
-        public BigDecimal getSecco() {
-            return secco;
-        }
-
-        public void setSecco(BigDecimal secco) {
-            this.secco = secco;
-        }
-
-        public BigDecimal getOrtofrutta() {
-            return ortofrutta;
-        }
-
-        public void setOrtofrutta(BigDecimal ortofrutta) {
-            this.ortofrutta = ortofrutta;
-        }
-
-        public BigDecimal getSurgelati() {
-            return surgelati;
-        }
-
-        public void setSurgelati(BigDecimal surgelati) {
-            this.surgelati = surgelati;
-        }
 
         public String getMeteo() {
             return meteo;
@@ -118,21 +62,14 @@ public class Incasso implements Serializable {
     public Incasso() {
     }
 
-    public Incasso(UUID id, LocalDate giorno, BigDecimal totale, BigDecimal gastronomia, BigDecimal fresco, BigDecimal secco, BigDecimal ortofrutta, BigDecimal surgelati, String meteo) {
+    public Incasso(UUID id, BigDecimal incasso, String meteo) {
         this.id = id;
-        this.giorno = giorno;
-        this.totale = totale;
-        this.gastronomia = gastronomia;
-        this.fresco = fresco;
-        this.secco = secco;
-        this.ortofrutta = ortofrutta;
-        this.surgelati = surgelati;
+        this.incasso = incasso;
         this.meteo = meteo;
     }
 
     @Override
     public String toString() {
-        return String.format("id=%s, giorno=%s, totale=%s, gastronomia=%s, fresco=%s, secco=%s, ortofrutta=%s, surgelati=%s, meteo=%s", getId(),
-                getGiorno(), getTotale(),getGastronomia(),getFresco(),getSecco(),getOrtofrutta(),getSurgelati(), getMeteo());
+        return String.format("id=%s, incasso=%s, meteo=%s", getId(), getIncasso(), getMeteo());
     }
 }

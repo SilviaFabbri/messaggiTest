@@ -17,13 +17,7 @@ public class IncassoDao {
         UUID uuid = UUID.randomUUID();
         Incasso incasso = new Incasso();
         incasso.setId(uuid);
-        incasso.setTotale(dto.getTotale());
-        incasso.setGiorno(dto.getGiorno());
-        incasso.setGastronomia(dto.getGastronomia());
-        incasso.setFresco(dto.getFresco());
-        incasso.setSecco(dto.getSecco());
-        incasso.setOrtofrutta(dto.getOrtofrutta());
-        incasso.setSurgelati(dto.getSurgelati());
+        incasso.setIncasso(dto.getIncasso());
         incasso.setMeteo(dto.getMeteo());
         try{
             return  this.repository.save(incasso);

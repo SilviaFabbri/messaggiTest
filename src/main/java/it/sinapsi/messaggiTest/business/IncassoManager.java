@@ -3,13 +3,16 @@ package it.sinapsi.messaggiTest.business;
 import it.sinapsi.messaggiTest.Dao.IncassoDao;
 import it.sinapsi.messaggiTest.Dto.IncassoDto;
 import it.sinapsi.messaggiTest.model.Incasso;
+import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.POST})
 @RequestMapping("/incassi")
 public class IncassoManager {
     @Autowired
@@ -23,17 +26,23 @@ public class IncassoManager {
         return  HttpStatus.CREATED;
     }
     @GetMapping()
-    public Iterable<Incasso> cercaTutto(){
-        return repository.findAll();
+    public BigDecimal aggiornaIncasso(){
+        Faker faker = new Faker();
+        BigDecimal incasso = BigDecimal.valueOf(faker.number().randomDouble(2, 4, 60));
+        System.err.println(incasso);
+        System.out.println("chiamata");
+        return incasso;
     }
+    //public Iterable<Incasso> cercaTutto(){
+       // return repository.findAll();
+    //}
     @GetMapping("/{id}")
-    public Optional<Incasso> cercaEmail(@PathVariable("id") String id){
+    public Optional<Incasso> cercaIncasso(@PathVariable("id") String id){
         Optional<Incasso> incasso =  repository.findById(id);
         if(incasso.isEmpty()){
             throw new RecordNonTrovato();
         }else{
             return incasso;
         }
-
     }
 }
