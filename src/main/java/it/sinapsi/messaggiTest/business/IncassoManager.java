@@ -19,6 +19,8 @@ public class IncassoManager {
     private IncassoDao Dao;
     @Autowired
     private IncassoRepository repository;
+    Faker faker = new Faker();
+    BigDecimal incasso = BigDecimal.valueOf(faker.number().randomDouble(2, 4, 60));
 
     @PostMapping()
     public HttpStatus createIncasso(@RequestBody IncassoDto dto){
@@ -27,10 +29,7 @@ public class IncassoManager {
     }
     @GetMapping()
     public BigDecimal aggiornaIncasso(){
-        Faker faker = new Faker();
-        BigDecimal incasso = BigDecimal.valueOf(faker.number().randomDouble(2, 4, 60));
-        System.err.println(incasso);
-        System.out.println("chiamata");
+
         return incasso;
     }
     //public Iterable<Incasso> cercaTutto(){
