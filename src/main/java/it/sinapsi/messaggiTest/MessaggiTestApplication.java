@@ -1,6 +1,10 @@
 package it.sinapsi.messaggiTest;
 
 
+import it.sinapsi.messaggiTest.Dao.IncassoDao;
+import it.sinapsi.messaggiTest.business.IncassoRepository;
+import it.sinapsi.messaggiTest.business.IncassoScheduler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;;
 import org.springframework.context.annotation.Bean;
@@ -10,9 +14,12 @@ import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 import redis.clients.jedis.ConnectionFactory;
 
+import java.util.Calendar;
+
 
 @SpringBootApplication
 public class MessaggiTestApplication {
+
 
 	@Bean
 	public MessageConverter jacksonJmsMessageConverter() {

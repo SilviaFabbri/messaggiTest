@@ -1,13 +1,11 @@
 package it.sinapsi.messaggiTest.business;
-
+import java.util.Calendar;
 import it.sinapsi.messaggiTest.Dao.IncassoDao;
 import it.sinapsi.messaggiTest.Dto.IncassoDto;
 import it.sinapsi.messaggiTest.model.Incasso;
-import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -19,22 +17,22 @@ public class IncassoManager {
     private IncassoDao Dao;
     @Autowired
     private IncassoRepository repository;
-    Faker faker = new Faker();
-    BigDecimal incasso = BigDecimal.valueOf(faker.number().randomDouble(2, 4, 60));
+    @Autowired
+    private IncassoScheduler scheduler;
 
     @PostMapping()
-    public HttpStatus createIncasso(@RequestBody IncassoDto dto){
-        this.Dao.create(dto);
+    public HttpStatus createIncasso(){
+        IncassoDto incasso = new IncassoDto();
+        incasso.setIncasso(scheduler.incrementaIncasso());
+        incasso.setMeteo(incasso.getMeteo());
+        this.Dao.create(incasso);
+        scheduler.arrezaIncasso();
         return  HttpStatus.CREATED;
     }
     @GetMapping()
     public BigDecimal aggiornaIncasso(){
-
-        return incasso;
+        return scheduler.incrementaIncasso();
     }
-    //public Iterable<Incasso> cercaTutto(){
-       // return repository.findAll();
-    //}
     @GetMapping("/{id}")
     public Optional<Incasso> cercaIncasso(@PathVariable("id") String id){
         Optional<Incasso> incasso =  repository.findById(id);

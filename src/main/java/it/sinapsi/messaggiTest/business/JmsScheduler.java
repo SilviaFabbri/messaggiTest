@@ -9,6 +9,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @EnableJms
 @EnableScheduling
@@ -21,11 +23,12 @@ public class JmsScheduler {
     public Iterable<Incasso> cercaTutto(){ return repository.findAll();}
 
     @Scheduled(fixedDelay = 60000)
-    public void scheduleIncasso(){
-        for(Incasso incasso : cercaTutto()){
-            jmsTemplate.convertAndSend("incassi", incasso);
-            repository.deleteAll();
-            System.out.println(incasso);
-        }
+    public void scheduleIncasso() {
+            for (Incasso incasso : cercaTutto()) {
+                if (incasso != null) {
+                    jmsTemplate.convertAndSend("incassi", incasso);
+                    repository.deleteAll();
+                }
+            }
     }
 }
