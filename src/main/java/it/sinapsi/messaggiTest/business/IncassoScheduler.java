@@ -12,7 +12,7 @@ public class IncassoScheduler {
     BigDecimal incasso = new BigDecimal("0");
 
     public BigDecimal generaIncasso(){
-        return incasso =  BigDecimal.valueOf(faker.number().randomDouble(2, 1, 20));
+        return incasso =  BigDecimal.valueOf(faker.number().randomDouble(2, 1, 50));
     }
     public void azzeraIncasso(){
         incasso = new BigDecimal("0");

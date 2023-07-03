@@ -18,7 +18,7 @@ public class SimulazioneCassa extends TimerTask {
     @Autowired
     private IncassoScheduler incassoProgrammato;
     UUID uuid =UUID.randomUUID();
-    @Scheduled(cron = "0 * 16-17 * * ?")
+    @Scheduled(cron = "0 * 9-14 * * ?")
     public void run(){
             Incasso incasso = new Incasso();
             incasso.setId(uuid);

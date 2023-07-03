@@ -26,7 +26,7 @@ public class ChiusuraInviata extends TimerTask {
     @Autowired
     private IncassoDao dao;
 
-    @Scheduled(cron = "0 0 12 * * *")
+    @Scheduled(cron = "0 0 14 * * *")
     public void run(){
         System.err.println("è entrato");
         if(this.repository != null){

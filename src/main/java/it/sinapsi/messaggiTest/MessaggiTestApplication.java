@@ -61,7 +61,7 @@ public class MessaggiTestApplication {
 		date.set(Calendar.MINUTE, 0);
 		date.set(Calendar.SECOND, 0);
 		Calendar date1 = Calendar.getInstance();
-		date1.set(Calendar.HOUR_OF_DAY, 12);
+		date1.set(Calendar.HOUR_OF_DAY, 14);
 		date1.set(Calendar.MINUTE, 0);
 		date1.set(Calendar.SECOND, 0);
 
