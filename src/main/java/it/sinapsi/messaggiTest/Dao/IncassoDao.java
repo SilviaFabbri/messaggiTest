@@ -13,12 +13,12 @@ public class IncassoDao {
     @Autowired
     private IncassoRepository repository;
 
-    public Incasso create(IncassoDto dto){
+    public Incasso create(Incasso incassoChiusura){
         UUID uuid = UUID.randomUUID();
         Incasso incasso = new Incasso();
         incasso.setId(uuid);
-        incasso.setIncasso(dto.getIncasso());
-        incasso.setMeteo(dto.getMeteo());
+        incasso.setIncasso(incassoChiusura.getIncasso());
+        incasso.setMeteo(incassoChiusura.getMeteo());
         try{
             return  this.repository.save(incasso);
         }catch (Exception e){
